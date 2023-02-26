@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th2 25, 2023 lúc 12:32 PM
+-- Thời gian đã tạo: Th2 26, 2023 lúc 03:24 PM
 -- Phiên bản máy phục vụ: 10.4.27-MariaDB
 -- Phiên bản PHP: 8.2.0
 
@@ -58,6 +58,99 @@ INSERT INTO `baiviet` (`ma_bviet`, `tieude`, `ten_bhat`, `ma_tloai`, `tomtat`, `
 (12, 'Cây và gió', 'Cây và gió', 7, 'Em và anh, hai đứa quen nhau thật tình cờ. Lời hát của anh từ bài hát “Cây và gió” đã làm tâm hồn em xao động. Nhưng sự thật phũ phàng rằng em chưa bao giờ nói cho anh biết những suy nghĩ tận sâu trong tim mình. Bởi vì em nhút nhát, em không dám đối mặt với thực tế khắc nghiệt, hay thực ra em không dám đối diện với chính mình.', NULL, 7, '2013-12-05 00:00:00', NULL),
 (13, 'Như một cách tạ ơn đời', 'Người thầy', 2, 'Ánh nắng cuối ngày rồi cũng sẽ tắt, dòng sông con đò rồi cũng sẽ rẽ sang một hướng khác. Nhưng việc trồng người luôn cảm thụ với chuyến đò ngang, cứ tần tảo đưa rồi lặng lẽ quay về đưa sang. Con đò năm xưa của Thầy nặng trĩu yêu thương, hy sinh thầm lặng.', NULL, 8, '2014-01-02 00:00:00', NULL);
 
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `tacgia`
+--
+
+CREATE TABLE `tacgia` (
+  `ma_tgia` int(10) UNSIGNED NOT NULL,
+  `ten_tgia` varchar(100) NOT NULL,
+  `hinh_tgia` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `tacgia`
+--
+
+INSERT INTO `tacgia` (`ma_tgia`, `ten_tgia`, `hinh_tgia`) VALUES
+(1, 'Nhacvietplus', NULL),
+(2, 'Sưu tầm', NULL),
+(3, 'Sandy', NULL),
+(4, 'Lê Trung Ngân', NULL),
+(5, 'Khánh Ngọc', NULL),
+(6, 'Night Stalker', NULL),
+(7, 'Phạm Phương Anh', NULL),
+(8, 'Tâm tình', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `theloai`
+--
+
+CREATE TABLE `theloai` (
+  `ma_tloai` int(10) UNSIGNED NOT NULL,
+  `ten_tloai` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `theloai`
+--
+
+INSERT INTO `theloai` (`ma_tloai`, `ten_tloai`) VALUES
+(1, 'Nhạc trẻ'),
+(2, 'Nhạc trữ tình'),
+(3, 'Nhạc cách mạng'),
+(4, 'Nhạc thiếu nhi'),
+(5, 'Nhạc quê hương'),
+(6, 'POP'),
+(7, 'Rock'),
+(8, 'R&B');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `username` varchar(200) NOT NULL,
+  `password` varchar(200) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc đóng vai cho view `vw_music`
+-- (See below for the actual view)
+--
+CREATE TABLE `vw_music` (
+`ma_bviet` int(10) unsigned
+,`tieude` varchar(200)
+,`ten_bhat` varchar(100)
+,`ma_tloai` int(10) unsigned
+,`tomtat` text
+,`noidung` text
+,`ma_tgia` int(10) unsigned
+,`ngayviet` datetime
+,`hinhanh` varchar(200)
+,`ten_tloai` varchar(50)
+,`ten_tgia` varchar(100)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc cho view `vw_music`
+--
+DROP TABLE IF EXISTS `vw_music`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_music`  AS SELECT `bv`.`ma_bviet` AS `ma_bviet`, `bv`.`tieude` AS `tieude`, `bv`.`ten_bhat` AS `ten_bhat`, `bv`.`ma_tloai` AS `ma_tloai`, `bv`.`tomtat` AS `tomtat`, `bv`.`noidung` AS `noidung`, `bv`.`ma_tgia` AS `ma_tgia`, `bv`.`ngayviet` AS `ngayviet`, `bv`.`hinhanh` AS `hinhanh`, `tl`.`ten_tloai` AS `ten_tloai`, `tg`.`ten_tgia` AS `ten_tgia` FROM ((`baiviet` `bv` join `theloai` `tl` on(`bv`.`ma_tloai` = `tl`.`ma_tloai`)) join `tacgia` `tg` on(`bv`.`ma_tgia` = `tg`.`ma_tgia`))  ;
+
 --
 -- Chỉ mục cho các bảng đã đổ
 --
@@ -71,6 +164,25 @@ ALTER TABLE `baiviet`
   ADD KEY `Fk_ma_tgia` (`ma_tgia`);
 
 --
+-- Chỉ mục cho bảng `tacgia`
+--
+ALTER TABLE `tacgia`
+  ADD PRIMARY KEY (`ma_tgia`);
+
+--
+-- Chỉ mục cho bảng `theloai`
+--
+ALTER TABLE `theloai`
+  ADD PRIMARY KEY (`ma_tloai`);
+
+--
+-- Chỉ mục cho bảng `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
+
+--
 -- AUTO_INCREMENT cho các bảng đã đổ
 --
 
@@ -79,6 +191,24 @@ ALTER TABLE `baiviet`
 --
 ALTER TABLE `baiviet`
   MODIFY `ma_bviet` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT cho bảng `tacgia`
+--
+ALTER TABLE `tacgia`
+  MODIFY `ma_tgia` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT cho bảng `theloai`
+--
+ALTER TABLE `theloai`
+  MODIFY `ma_tloai` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT cho bảng `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
