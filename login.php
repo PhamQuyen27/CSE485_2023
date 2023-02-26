@@ -44,27 +44,22 @@
     <main class="container mt-5 mb-5">
         <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
         <?php
-        // Kết nối tới cơ sở dữ liệu
         $conn = mysqli_connect('localhost', 'root', '', 'btth01_cse485');
 
-        // Lấy dữ liệu từ form đăng nhập
         $username = $_POST['txtUser'];
         $password = $_POST['txtPass'];
 
-        // Kiểm tra xem tên đăng nhập và mật khẩu có tồn tại trong cơ sở dữ liệu không
+
         $query = "SELECT * FROM users WHERE username='$username' AND password='$password'";
         $result = mysqli_query($conn, $query);
 
         if (mysqli_num_rows($result) == 1) {
-            // Đăng nhập thành công
             echo "Đăng nhập thành công";
             header("Location: ./admin/index.php");
         } else {
-            // Đăng nhập thất bại
             echo "Đăng nhập thất bại";
         }
 
-        // Đóng kết nối
         mysqli_close($conn);
         ?>
         <div class="d-flex justify-content-center h-100">
