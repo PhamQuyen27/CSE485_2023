@@ -44,23 +44,37 @@
     <main class="container mt-5 mb-5">
         <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
         <?php
-        $conn = mysqli_connect('localhost', 'root', '', 'btth01_cse485');
+        // $conn = mysqli_connect('localhost', 'root', '', 'btth01_cse485');
 
-        $username = $_POST['txtUser'];
-        $password = $_POST['txtPass'];
+        // $username = $_POST['txtUser'];
+        // $password = $_POST['txtPass'];
 
 
-        $query = "SELECT * FROM users WHERE username='$username' AND password='$password'";
-        $result = mysqli_query($conn, $query);
+        // $query = "SELECT * FROM users WHERE username='$username' AND password='$password'";
+        // $result = mysqli_query($conn, $query);
 
-        if (mysqli_num_rows($result) == 1) {
-            echo "Đăng nhập thành công";
-            header("Location: ./admin/index.php");
-        } else {
-            echo "Đăng nhập thất bại";
+        // if (mysqli_num_rows($result) == 1) {
+        //     echo "Đăng nhập thành công";
+        //     header("Location: ./admin/index.php");
+        // } else {
+        //     echo "";
+        // }
+        ?>
+        <?php
+        if ($_POST) {
+            $conn = mysqli_connect('localhost', 'root', '', 'btth01_cse485');
+            $user_name = $_POST['txtUser'];
+            $password = $_POST['txtPass'];
+            $result = mysqli_query($conn, "SElect * from users where username = '$user_name' and password = '$password'");
+            $row = mysqli_fetch_assoc($result);
+
+            if ($row) {
+                header("Location: ./admin/index.php");
+            } else {
+                echo '<p style = "color: red">Tên đăng nhập hoặc mật khẩu không đúng!</p>';
+            }
         }
 
-        mysqli_close($conn);
         ?>
         <div class="d-flex justify-content-center h-100">
             <div class="card">
@@ -76,12 +90,12 @@
                     <form action="" method="post">
                         <div class="input-group mb-3">
                             <span class="input-group-text" id=><i class="fas fa-user"></i></span>
-                            <input type="text" class="form-control" name = "txtUser" placeholder="username">
+                            <input type="text" class="form-control" name="txtUser" placeholder="username">
                         </div>
 
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="txtPass"><i class="fas fa-key"></i></span>
-                            <input type="text" class="form-control" name = "txtPass" placeholder="password">
+                            <input type="text" class="form-control" name="txtPass" placeholder="password">
                         </div>
 
                         <div class="row align-items-center remember">
