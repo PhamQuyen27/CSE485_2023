@@ -43,6 +43,19 @@
         </nav>
 
     </header>
+    <?php
+        $servername = 'localhost';
+        $database = 'btth01_cse485';
+        $charset = 'utf8mb4';
+        $port = '';
+
+        try {
+            $conn = new PDO("mysql:host=$servername;dbname=$database;port=3306", 'root','');
+        } catch (PDOException $e) {
+            throw new PDOException($e->getMessage(), $e->getCode());
+        }
+
+    ?>
     <main class="container mt-5 mb-5">
         <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
         <div class="row">
