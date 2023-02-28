@@ -41,7 +41,7 @@
             </div>
         </nav>
 
-    </header>   
+    </header>
     <?php
         $servername = 'localhost';
         $database = 'btth01_cse485';
@@ -53,7 +53,7 @@
         } catch (PDOException $e) {
             throw new PDOException($e->getMessage(), $e->getCode());
         }
-        
+
         $sql = "SELECT * from baiviet";
         $stmt = $conn->query($sql);
     ?>
@@ -94,7 +94,7 @@
                             <td><a href=""><i class="fa-solid fa-trash"></i></a></td>
                         </tr>
                         <?php } ?>
-                       
+
                     </tbody>
                 </table>
             </div>

@@ -42,6 +42,21 @@
         </nav>
 
     </header>
+    <?php
+        $servername = 'localhost';
+        $database = 'btth01_cse485';
+        $charset = 'utf8mb4';
+        $port = '';
+
+        try {
+            $conn = new PDO("mysql:host=$servername;dbname=$database;port=3306", 'root','');
+        } catch (PDOException $e) {
+            throw new PDOException($e->getMessage(), $e->getCode());
+        }
+
+        $sql = "SELECT * from theloai";
+        $stmt = $conn->query($sql);
+    ?>
     <main class="container mt-5 mb-5">
         <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
         <div class="row">
@@ -57,27 +72,15 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <?php foreach ($stmt as $key => $value) { ?>
                         <tr>
-                            <th scope="row">1</th>
-                            <td>Nhạc trữ tình</td>
-                            <td>
-                                <a href="edit_category.php?id=1"><i class="fa-solid fa-pen-to-square"></i></a>
-                            </td>
-                            <td>
-                                <a href=""><i class="fa-solid fa-trash"></i></a>
-                            </td>
+                        <td><?php echo $value['ma_tloai'] ?></td>
+                        <td><?php echo $value['ten_tloai'] ?></td>
+
+                        <td><a href="edit_article.php?id=<?php $value['ma_tloai'] ?>"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                        <td><a href=""><i class="fa-solid fa-trash"></i></a></td>
                         </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Nhạc cách mạng</td>
-                            <td>
-                                <a href="edit_category.php?id=2"><i class="fa-solid fa-pen-to-square"></i></a>
-                            </td>
-                            <td>
-                                <a href=""><i class="fa-solid fa-trash"></i></a>
-                            </td>
-                        </tr>
-                       
+                        <?php } ?>
                     </tbody>
                 </table>
             </div>
