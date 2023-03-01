@@ -53,9 +53,17 @@
         } catch (PDOException $e) {
             throw new PDOException($e->getMessage(), $e->getCode());
         }
-
-        $sql = "SELECT * from baiviet";
+        if(isset($_GET["id"])){
+            $id = $_GET["id"];
+         }
+         
+        $sql = "SELECT * from baiviet 
+                inner join theloai on baiviet.ma_tloai = theloai.ma_tloai
+                inner join tacgia on baiviet.ma_tgia = tacgia.ma_tgia
+                order by ma_bviet ASC";
         $stmt = $conn->query($sql);
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
     ?>
     <main class="container mt-5 mb-5">
         <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
@@ -79,19 +87,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($stmt as $key => $value) { ?>
+                        <?php foreach ($results as $key => $value) { ?>
                         <tr>
                             <td><?php echo $value['ma_bviet'] ?></td>
                             <td><?php echo $value['tieude'] ?></td>
                             <td><?php echo $value['ten_bhat'] ?></td>
-                            <td><?php echo $value['ma_tloai'] ?></td>
+                            <td><?php echo $value['ten_tloai'] ?></td>
                             <td><?php echo $value['tomtat'] ?></td>
                             <td><?php echo $value['noidung'] ?></td>
-                            <td><?php echo $value['ma_tgia'] ?></td>
+                            <td><?php echo $value['ten_tgia'] ?></td>
                             <td><?php echo $value['ngayviet'] ?></td>
                             <td><img src="<?php echo $value['hinhanh'] ?>" alt=""></td>
-                            <td><a href="edit_article.php?id=<?php $value['ma_bviet'] ?>"><i class="fa-solid fa-pen-to-square"></i></a></td>
-                            <td><a href=""><i class="fa-solid fa-trash"></i></a></td>
+                            <td><a href="edit_article.php?id=<?php echo $value['ma_bviet'] ?>"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                            <td><a href="delete_article.php?id=<?php echo $value['ma_bviet'] ?>"><i class="fa-solid fa-trash"></i></a></td>
                         </tr>
                         <?php } ?>
 
