@@ -55,7 +55,7 @@
         }
         if(isset($_GET["id"])){
             $id = $_GET["id"];
-         }
+        }
          
         $sql = "SELECT * from baiviet 
                 inner join theloai on baiviet.ma_tloai = theloai.ma_tloai
@@ -97,7 +97,7 @@
                             <td><?php echo $value['noidung'] ?></td>
                             <td><?php echo $value['ten_tgia'] ?></td>
                             <td><?php echo $value['ngayviet'] ?></td>
-                            <td><img src="<?php echo $value['hinhanh'] ?>" alt=""></td>
+                            <td><img src="../images/songs/<?php echo $value['hinhanh'] ?>" alt="" style = "width: 150px"></td>
                             <td><a href="edit_article.php?id=<?php echo $value['ma_bviet'] ?>"><i class="fa-solid fa-pen-to-square"></i></a></td>
                             <td><a href="delete_article.php?id=<?php echo $value['ma_bviet'] ?>"><i class="fa-solid fa-trash"></i></a></td>
                         </tr>

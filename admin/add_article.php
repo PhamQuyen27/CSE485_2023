@@ -106,8 +106,9 @@
                     </div>
 
                     <div class="input-group mt-3 mb-3">
-                        <span class="input-group-text" id="lblCatName">Hình ảnh</span>
-                        <textarea name="hinhanh" id="mytextarea"></textarea>
+                        <span class="input-group-text" id="lblCatName">Hình ảnh </span> 
+                        <!-- <textarea name="image" id="mytextarea"></textarea>  -->
+                        <input type="file" class="form-control" name="image" accept="image/*" id="image" >
                     </div>
 
                     <div class="form-group  float-end ">
@@ -124,12 +125,5 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <script src="/ckeditor5-build-classic/build/ckeditor.js"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
-    <script>
-        ClassicEditor
-            .create( document.querySelector( '#mytextarea' ) )
-            .catch( error => {
-            console.error( error );
-            } );
-    </script>
 </body>
 </html>
