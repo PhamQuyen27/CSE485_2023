@@ -43,6 +43,7 @@
 
     </header>
     <?php
+    //ket noi databse
         $servername = 'localhost';
         $database = 'btth01_cse485';
         $charset = 'utf8mb4';
@@ -56,7 +57,7 @@
         if(isset($_GET["id"])){
             $id = $_GET["id"];
         }
-         
+         // truy vấn dữ liệu
         $sql = "SELECT * from baiviet 
                 inner join theloai on baiviet.ma_tloai = theloai.ma_tloai
                 inner join tacgia on baiviet.ma_tgia = tacgia.ma_tgia

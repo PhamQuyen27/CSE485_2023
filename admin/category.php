@@ -78,7 +78,7 @@
                         <td><?php echo $value['ten_tloai'] ?></td>
 
                         <td><a href="edit_article.php?id=<?php $value['ma_tloai'] ?>"><i class="fa-solid fa-pen-to-square"></i></a></td>
-                        <td><a href=""><i class="fa-solid fa-trash"></i></a></td>
+                        <td><a href="process_delete_category.php?id=<?php echo $row['ma_tloai']; ?>" id ="btnDelete" > <i class="fa-solid fa-trash"></i></a></td>
                         </tr>
                         <?php } ?>
                     </tbody>

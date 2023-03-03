@@ -43,11 +43,8 @@
         </nav>
 
     </header>
-  
-    <main class="container mt-5 mb-5">
-        <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
-        <div class="row">
-        <?php
+    <?php
+        // kết nối database
         $servername = 'localhost';
         $database = 'btth01_cse485';
         $charset = 'utf8mb4';
@@ -62,7 +59,7 @@
         if(isset($_GET["id"])){
             $id = $_GET["id"];
         }
-        // lấy dữ liệu
+        // truy vấn dữ liệu
         $sql_theloai = "SELECT * FROM theloai";
         $stmt_tl = $conn->query($sql_theloai);
         $sql_tacgia = "SELECT * FROM tacgia";
@@ -96,6 +93,9 @@
         //     header('Location: article.php'); 
         // }
     ?>
+    <main class="container mt-5 mb-5">
+        <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
+        <div class="row">
             <div class="col-sm">
                 <h3 class="text-center text-uppercase fw-bold">Chỉnh sửa bài viết</h3>
                 <form action="process_edit_article.php" method="post">
@@ -152,7 +152,8 @@
 
                     <div class="input-group mt-3 mb-3">
                         <span class="input-group-text" id="lblCatName">Hình ảnh</span>
-                        <textarea name="hinhanh" id="mytextarea"></textarea>
+                        <!-- <textarea name="hinhanh" id="mytextarea"></textarea> -->
+                        <input type="file" class="form-control" name= "hinhanh" >
                     </div>
 
                     <div class="form-group  float-end ">
