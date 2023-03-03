@@ -44,6 +44,7 @@
 
     </header>
     <?php
+    //kết nối database
         $servername = 'localhost';
         $database = 'btth01_cse485';
         $charset = 'utf8mb4';
@@ -54,7 +55,7 @@
         } catch (PDOException $e) {
             throw new PDOException($e->getMessage(), $e->getCode());
         }
-        // lấy dữ liệu
+        // truy vấn dữ liệu
         $sql_theloai = "SELECT * FROM theloai";
         $stmt_tl = $conn->query($sql_theloai);
         $sql_tacgia = "SELECT * FROM tacgia";
@@ -99,16 +100,16 @@
                     <div class="input-group mt-3 mb-3">
                         <span class="input-group-text" id="">Tác giả</span>
                         <select name="tacgia">
-                        <?php  while($value = $stmt_tg->fetch()){?>
+                        <?php  while($value = $stmt_tg->fetch()) {?>
                             <option value="<?php echo $value['ma_tgia']?>"><?php echo $value['ten_tgia'] ?></option>
-                            <?php  } ?>
+                            <?php }  ?>
                         </select>
                     </div>
 
                     <div class="input-group mt-3 mb-3">
                         <span class="input-group-text" id="lblCatName">Hình ảnh </span> 
                         <!-- <textarea name="image" id="mytextarea"></textarea>  -->
-                        <input type="file" class="form-control" name="image" accept="image/*" id="image" >
+                        <input type="file" class="form-control" name= "hinhanh" >
                     </div>
 
                     <div class="form-group  float-end ">

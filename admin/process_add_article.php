@@ -18,9 +18,9 @@
         $tomtat = $_POST['tomtat'];
         $noidung = $_POST['noidung'];
         $tgia = $_POST['tacgia'];
-        $hinhanh = $_FILES['image']['name'];
-        $hinhanh_tmp = $_FILES['image']['tmp_name'];
-
+        $hinhanh = $_FILES['hinhanh']['name'];
+        $hinhanh_tmp = $_FILES['hinhanh']['tmp_name'];
+    //thực hiện thêm dữ liệu
     $stmt = $conn->prepare("INSERT INTO baiviet(ma_bviet,tieude,ten_bhat,ma_tloai,tomtat,noidung,ma_tgia,hinhanh) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
     if($stmt->execute([null, $tieude, $t_bhat, $theloai, $tomtat, $noidung, $tgia, $hinhanh])){
         // $target_dir = "images/songs/";
