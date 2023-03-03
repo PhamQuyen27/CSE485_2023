@@ -26,4 +26,5 @@ if ($conn->query($sql) === TRUE) {
 }
 
 $conn->close();
+header('location: ../admin/add_author.php');
 ?>

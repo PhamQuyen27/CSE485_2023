@@ -79,8 +79,8 @@
                         <td><?php echo $value['hinh_tgia'] ?></td>
                         <td><?php echo $value['ten_tgia'] ?></td>
 
-                        <td><a href="edit_article.php?id=<?php $value['ma_tgia'] ?>"><i class="fa-solid fa-pen-to-square"></i></a></td>
-                        <td><a href=""><i class="fa-solid fa-trash"></i></a></td>
+                        <td><a href="edit_author.php?id=<?php echo $value['ma_tgia'] ?>"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                        <td><a href="process_delete_author.php?id=<?php echo $value['ma_tgia'] ?>"><i class="fa-solid fa-trash"></i></a></td>
                         </tr>
                         <?php } ?>
                     </tbody>

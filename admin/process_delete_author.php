@@ -15,9 +15,7 @@
     }
     else {
         echo "Connected not successfully";
-        // $result = "Xóa không thành công" .mysqli_error($conn);
     }
     mysqli_close($conn);
-    
     header('location: ../admin/author.php');
 ?>
