@@ -25,3 +25,5 @@
     else {
         $result = "Lỗi thêm mới" .mysqli_error($conn);
     }
+
+    ?>
