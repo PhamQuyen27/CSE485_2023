@@ -68,7 +68,7 @@
           ?>
                      <div class="row mb-5">
                     <div class="col-sm-4">
-                    <img src="<?php echo $row['hinhanh'];?>" class="card-img-top" alt="...">
+                    <img src="images/songs/<?php echo $row['hinhanh'];?>" class="card-img-top" alt="...">
                     </div>
                     <div class="col-sm-8">
                         <h5 class="card-title mb-2">
